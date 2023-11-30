@@ -1,0 +1,100 @@
+& operator (Bitwise AND operation)
+| operator (Bitwise OR operation)
+^ operator (Bitwise XOR operation)
+~ operator (Bitwise NOT operation or 1’s complement):- Replace 0 by 1 and 1 by 0 
+    Note: Negative integers are represented in memory as their 2’s complement form
+    i.e. -x = 2’s complement of x
+    2’s complement = 1’s complement + 1
+    -x = ~x + 1 => ~x = - (x+1)
+    Eg. ~25 = -26 = -25 -1 = - (25+1)
+
+
+<< operator (Left shift operation)
+    Important property:
+    x << b = x * (2b)
+    Preventing Overflows in Left Shift ( Very Important )
+    
+    To prevent-overflows, use LL with constants 
+    (to convert to long long) 
+    Eg. (1LL << 40) is correct
+    But (1 << 40) is wrong (overflow)
+
+>> operator (Right shift operation)
+    Important property:
+    x >> b = floor(x / (2b))
+
+#Applications of bitwise operators 
+
+1.Check whether xth bit (from the right) of a number n is set 
+    if ( n & ( 1<<x ) ) {
+                // x^th bit is set
+            } else {
+        // x^th bit is not set        
+           }
+2.Set xth bit (from the right) of a number n
+	
+	  n = n | (1<<x)
+    1 << x = 10000...0 (1 is at only the x-th position)
+
+3.Toggle xth bit (from the right) of a number n
+	  (Toggle means 0 becomes 1 and 1 becomes 0)
+    n = n ^ (1<<x)
+    1 << x = 10000...0 (1 is at only the x-th position)
+
+4.Find LSB of n. Using this, also unset the LSB of n.
+    LSB = n & (-n)
+    To unset LSB , subtract LSB 
+    Method 1:
+    n = n - ( n &(-n)  )
+    Method 2:
+    n = n ^ ( n &(-n)  )
+
+5.Given number n, check whether it is a power of 2
+    if ( n & (n-1) ) {
+    // n is not a power of 2
+    } else if (n>0){
+     // n is a power of 2 
+    }
+6.Given 2 equations on a & b. Given values of n & m. Find values of a & b that satisfy it: 
+    a + b = m
+    a ^ b = n
+    Solution 
+    From half-adder (or binary addition)
+    S = a^b
+    C = a&b
+    a + b = a^b + ((a&b) << 1) 
+    (a + b) - ( a^b) =  ((a&b) * 2) 
+    a & b = floor ( ((a + b) - ( a^b)) / 2 )
+    Let k = a & b = floor ( (m- n) / 2 )
+    Iterate through all bits and check the bit value of n & k, 
+
+7.Find addition of 2 numbers using only bit-wise operations.
+8.Using the above, find multiplication of 2 numbers using only bit-wise operations 
+  (Similar thing was discussed in number theory - think of something like iterative version of binary exponentation)
+
+9. Unset xth bit of a number n, n = n  & ~(1<<x)
+
+#Bitmasking 
+
+Representation of sets ( sets in Set theory ) using an integer
+If xth bit is set (1) in the integer , that element x is present in the set
+If xth bit is unset (0) in the integer , that element x is not present in the set 
+There are 2n subsets of a set of n elements
+1.Finding the number of set bits ( 1-bits ) in any integer x
+    
+    cout<<__builtin_popcount(x);
+    Eg.
+    	cout<<__builtin_popcount(9); 
+      // “1001” has 2 set bits 
+
+
+
+
+
+
+
+
+
+
+
+
