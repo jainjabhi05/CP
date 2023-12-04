@@ -1,0 +1,32 @@
+#ques 1
+https://codeforces.com/contest/1902/problem/B
+Solution 
+void solve(){
+    int n,p,l,t;
+    cin>>n>>p>>l>>t;
+    int lo=0, hi=n, ans;
+    int nt=n/7;
+    if(n%7) nt++;
+ 
+    while(lo<=hi){
+        int mid=lo+(hi-lo)/2;
+        int wd=n-mid;
+        int pt=0;
+        if(wd<=nt/2){
+            pt+=wd*(2*t+l);
+        }
+        else{
+            pt+=wd*l+nt*t;
+        }
+        if(pt>=p){
+            ans=mid;
+            lo=mid+1;
+        }
+        else hi=mid-1;
+    }
+    cout<<ans<<'\n';
+}
+
+
+
+#ques2 
